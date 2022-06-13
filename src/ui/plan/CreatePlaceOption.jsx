@@ -7,7 +7,6 @@ const Create = () => {
     const [id, setId] = useState(0)
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
-
     const [property, setProperty] = useState(['Hotel', 'Museum', 'Garden', 'Hot Spring'])
 
     return (
