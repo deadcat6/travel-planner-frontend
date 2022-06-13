@@ -10,7 +10,7 @@ import {PlanView} from "./ui/plan/PlanView.tsx";
 
 function App() {
   return (
-    <CreatePlaceOption/>
+    <PlanView/>
   );
 }
 
