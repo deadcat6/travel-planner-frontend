@@ -1,4 +1,11 @@
+import * as React from "react";
 import {useState} from "react";
+// @ts-ignore
+import {NewPlace} from './NewPlace.tsx';
+
+
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 export type userType = {
   id: string,
   plans: planType[],
@@ -43,10 +50,10 @@ export type placeType = {
   placeDuration: {
   startTime: Date,
   endTime: Date,
-  }
+  },
 
   //iris
-  type: typeOfPlace
+  type: typeOfPlace,
   title: string,
   image: string,
   geo: {
@@ -60,14 +67,62 @@ export type placeType = {
 };
 
 export const PlanView = () => {
-  const [plan, setPlan] = useState<planType>();
+  const [plan, setPlan] = useState<planType>({
+    id: "string",
+    title: "string",
+    owner: [],
+    days: [],
+    planDuration: {
+      startDay: new Date(),
+      endDay: new Date(),
+    },
+    note: "string",
+    //p1
+    desc: "string",
+    tag: [],
+    likes: 1,
 
-  const [place, setPlace] = useState<placeType>();
+  });
+
+  const [place, setPlace] = useState<placeType>({
+      id: "string",
+      note: "string",
+      placeDuration: {
+        startTime: new Date(),
+        endTime: new Date(),
+      },
+      //iris
+      type: 0,
+      title: "string",
+      image: "string",
+      geo: {
+        lat: "string",
+        lng: "string",
+      },
+      rating: 0, // google api
+      popularity: 0, //counter
+    }
+  );
 
   return (
+
     <div>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={4}  sx={{
+            width: 300,
+            color: 'black',
+          }}>
+            <NewPlace addNewPlace={(newPlace: placeType)=>{console.log(place);}}/>
+          </Grid>
+          <Grid item xs={8}>
+            <div>123</div>
+          </Grid>
+        </Grid>
+      </Box>
 
     </div>
+
 
   )
 }
