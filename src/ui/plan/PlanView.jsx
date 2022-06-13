@@ -22,6 +22,5 @@ export const PlanView = () => {
     <div>
       plan view page
     </div>
-
   )
 }
