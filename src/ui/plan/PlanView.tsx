@@ -38,19 +38,23 @@ export enum typeOfPlace {
 }
 export type placeType = {
   id: string,
-  title: string,
-  image: string,
+  //songHan
   note:  string,
-  rating: number, // google api
   placeDuration: {
   startTime: Date,
   endTime: Date,
   }
+
+  //iris
   type: typeOfPlace
+  title: string,
+  image: string,
   geo: {
     lat: string,
     lng: string,
   }
+  rating: number, // google api
+
   //p1
   popularity: number, //counter
 };
@@ -58,10 +62,11 @@ export type placeType = {
 export const PlanView = () => {
   const [plan, setPlan] = useState<planType>();
 
+  const [place, setPlace] = useState<placeType>();
 
   return (
     <div>
-      plan view page
+
     </div>
 
   )
