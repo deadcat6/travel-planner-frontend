@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
+import { MultiSelect } from '@mantine/core';
 
 const Create = () => {
     //const [title, ]
@@ -17,33 +19,41 @@ const Create = () => {
                     required
                 ></textarea>
 
-                <label>Image</label>
+                <label for="url">Image</label>
+                <input type="url" name="url" id="url"
+                    placeholder="https://example.com"
+                    pattern="https://.*" size="30"
+                    required>
+                </input>
 
                 <label>Duration time</label>
-                <textarea
-                    placeholder='Start Time'
-                    required
-                ></textarea>
-                <textarea
-                    placeholder='End Time'
-                    required
-                ></textarea>
-
+                <input
+                    placeholder='Start Time' 
+                    type="date">
+                </input>
+                <input
+                    placeholder='End Time' 
+                    type="date">
+                </input>
                 <label>Property</label>
                 <select>
-                    <option value="hotel"></option>
-                    <option value="museum"></option>
-                    <option value="garden"></option>
-                    <option value="hot spring"></option>
+                    <option value="hotel">Hotel</option>
+                    <option value="museum">Museum</option>
+                    <option value="garden">Garden</option>
+                    <option value="hot spring">Hot Spring</option>
                 </select>
 
-                <label>Description</label>
+                {/* <label>Description</label>
+                <input type="text" /> 
 
                 <label>Cost</label>
+                <input type="text" /> 
 
                 <label>Rating</label>
+                <input type="text" /> 
 
                 <label>Popularity</label>
+                <input type="text" />  */}
 
                 <button>Add Place to List</button>
             </form>

@@ -38,31 +38,72 @@ export enum typeOfPlace {
 }
 export type placeType = {
   id: string,
-  title: string,
-  image: string,
+  //songHan
   note:  string,
-  rating: number, // google api
   placeDuration: {
   startTime: Date,
   endTime: Date,
-  }
-  type: typeOfPlace
+  },
+
+  //iris
+  type: typeOfPlace,
+  title: string,
+  image: string,
   geo: {
     lat: string,
     lng: string,
   }
+  rating: number, // google api
+
   //p1
   popularity: number, //counter
 };
 
-export const PlanView = () => {
-  const [plan, setPlan] = useState<planType>();
+import {NewPlace} from './NewPlace';
 
+export const PlanView = () => {
+  const [plan, setPlan] = useState<planType>({
+    id: "string",
+    title: "string",
+    owner: [],
+    days: [],
+    planDuration: {
+      startDay: new Date(),
+      endDay: new Date(),
+    },
+    note: "string",
+    //p1
+    desc: "string",
+    tag: [],
+    likes: 1,
+
+  });
+
+  const [place, setPlace] = useState<placeType>({
+      id: "string",
+      note: "string",
+      placeDuration: {
+        startTime: new Date(),
+        endTime: new Date(),
+      },
+      //iris
+      type: 0,
+      title: "string",
+      image: "string",
+      geo: {
+        lat: "string",
+        lng: "string",
+      },
+      rating: 0, // google api
+      popularity: 0, //counter
+    }
+  );
 
   return (
     <div>
-      plan view page
+      <NewPlace addNewPlace={(place: placeType)=>{console.log(place);}}/>
     </div>
+
 
   )
 }
