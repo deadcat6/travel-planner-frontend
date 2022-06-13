@@ -2,13 +2,32 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
 import { Title, Box, Image, Button, Group, MultiSelect, InputWrapper, Text,Textarea } from '@mantine/core';
+import {placeType} from "./PlanView";
 
 const Create = () => {
     const [id, setId] = useState(0)
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
     const [property, setProperty] = useState(['Hotel', 'Museum', 'Garden', 'Hot Spring'])
-
+    const [place, setPlace] = useState<placeType>({
+          id: "string",
+          note: "string",
+          placeDuration: {
+              startTime: new Date(),
+              endTime: new Date(),
+          },
+          //iris
+          type: 0,
+          title: "string",
+          image: "string",
+          geo: {
+              lat: "string",
+              lng: "string",
+          },
+          rating: 0, // google api
+          popularity: 0, //counter
+      }
+    );
     return (
         <Box className='create'>
             <Title order={2}>Submit a Place Option</Title>
@@ -17,6 +36,9 @@ const Create = () => {
                     placeholder={uuidv4()}
                     label="Id"
                     required
+                    onChange={event => {
+                        setPlace(...place, {image: event.target.value});
+                    }}
                 />
 
                 <Textarea
