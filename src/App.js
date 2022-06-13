@@ -1,12 +1,16 @@
+import React from 'react'
 import logo from './logo.svg';
 import './App.css';
+
+import Home from './components/Home'
+import CreatePlaceOption from './components/CreatePlaceOption'
+
 import {GoogleMapDemo} from "./googleApiDemo/GoogleMapDemo";
-import GooglePlaces from './ui/plan/GooglePlaces';
+import {BrowserRouter as Router, Route, Link} from "react-router-dom"
+
 function App() {
   return (
-    <div>
-      <GooglePlaces />
-    </div>
+    <CreatePlaceOption/>
   );
 }
 
