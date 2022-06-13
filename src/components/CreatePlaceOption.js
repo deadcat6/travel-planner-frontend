@@ -1,15 +1,16 @@
 import React from 'react'
 
 const Create = () => {
+    const [title, ]
 
     return (
         <div className='create'>
             <h2>Submit a Place Option</h2>
             <form>
-                <label>Id</label>
+                {/* <label>Id</label>
                 <input
                     type="text"
-                />
+                /> */}
 
                 <label>Title</label>
                 <textarea
@@ -18,7 +19,7 @@ const Create = () => {
 
                 <label>Image</label>
 
-                <label>Duration Time</label>
+                <label>Duration time</label>
                 <textarea
                     placeholder='Start Time'
                     required
