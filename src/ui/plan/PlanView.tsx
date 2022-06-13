@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
 // @ts-ignore
-import {NewPlace} from './NewPlace.tsx';
+import {NewPlace} from './NewPlace';
 
 
 import Box from '@mui/material/Box';
