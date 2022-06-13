@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { MultiSelect } from '@mantine/core';
 
 const Create = () => {
+    //const [title, ]
+
     return (
         <div className='create'>
             <h2>Submit a Place Option</h2>
@@ -17,7 +19,12 @@ const Create = () => {
                     required
                 ></textarea>
 
-                <label>Image</label>
+                <label for="url">Image</label>
+                <input type="url" name="url" id="url"
+                    placeholder="https://example.com"
+                    pattern="https://.*" size="30"
+                    required>
+                </input>
 
                 <label>Duration time</label>
                 <input
@@ -36,7 +43,7 @@ const Create = () => {
                     <option value="hot spring">Hot Spring</option>
                 </select>
 
-                <label>Description</label>
+                {/* <label>Description</label>
                 <input type="text" /> 
 
                 <label>Cost</label>
@@ -46,7 +53,7 @@ const Create = () => {
                 <input type="text" /> 
 
                 <label>Popularity</label>
-                <input type="text" /> 
+                <input type="text" />  */}
 
                 <button>Add Place to List</button>
             </form>
