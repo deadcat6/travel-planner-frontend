@@ -1,6 +1,11 @@
+import * as React from "react";
 import {useState} from "react";
-import {NewPlace} from './NewPlace';
+// @ts-ignore
+import {NewPlace} from './NewPlace.tsx';
 
+
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 export type userType = {
   id: string,
   plans: planType[],
@@ -45,10 +50,10 @@ export type placeType = {
   placeDuration: {
   startTime: Date,
   endTime: Date,
-  },
+  }
 
   //iris
-  type: typeOfPlace,
+  type: typeOfPlace
   title: string,
   image: string,
   geo: {
@@ -100,8 +105,22 @@ export const PlanView = () => {
   );
 
   return (
+
     <div>
-      <NewPlace addNewPlace={(place: placeType)=>{console.log(place);}}/>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={4}  sx={{
+            width: 300,
+            color: 'black',
+          }}>
+            <NewPlace addNewPlace={(newPlace: placeType)=>{console.log(place);}}/>
+          </Grid>
+          <Grid item xs={8}>
+            <div>123</div>
+          </Grid>
+        </Grid>
+      </Box>
+
     </div>
 
 

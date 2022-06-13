@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
-import {placeType} from "./PlanView";
-import {SearchBar} from "./SearchBar";
+import {placeType} from "./PlanView.tsx";
+import {SearchBar} from "./SearchBar.tsx";
 export const NewPlace = (props) => {
   const [place, setPlace] = useState<placeType>({
       id: "string",
@@ -30,7 +30,7 @@ export const NewPlace = (props) => {
   return (
     <div>
       <SearchBar place={place} setPlace={setPlace}/>
-    {/*  你的其他form组件*/}
+      {/*  你的其他form组件*/}
     </div>
   );
 }
