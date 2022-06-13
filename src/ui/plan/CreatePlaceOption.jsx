@@ -1,7 +1,7 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
-import { Title, Box, Image, Button, Group, MultiSelect, InputWrapper, Textarea } from '@mantine/core';
+import { Title, Box, Image, Button, Group, MultiSelect, InputWrapper, Text,Textarea } from '@mantine/core';
 
 const Create = () => {
     const [id, setId] = useState(0)
@@ -40,6 +40,7 @@ const Create = () => {
                         type="date">
                     </input>
                 </InputWrapper>
+                
                 <MultiSelect
                     label="Place Property "
                     data={property}

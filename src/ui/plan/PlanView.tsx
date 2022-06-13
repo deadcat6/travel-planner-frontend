@@ -6,6 +6,7 @@ import {NewPlace} from './NewPlace.tsx';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+
 export type userType = {
   id: string,
   plans: planType[],
@@ -18,6 +19,7 @@ export type userType = {
   follower: userType[],
   subscribe: userType[],
 };
+
 export type planType = {
   id: string,
   title: string,
@@ -33,16 +35,19 @@ export type planType = {
   tag: string[],
   likes: number,
 };
+
 export type tripDayType = {
   date:Date,
   places: placeType[],
 };
+
 export enum typeOfPlace {
   hotel,
   restaurant,
   attraction,
   other,
 }
+
 export type placeType = {
   id: string,
   //songHan
