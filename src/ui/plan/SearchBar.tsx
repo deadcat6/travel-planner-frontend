@@ -7,22 +7,31 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 
 export const SearchBar = (props) => {
-
-  const onChangeHandler = () => {
-    props.setPlace(...props.place, {
-      title: "changed by search bar component",
-    });
-  }
-
   const [address, setAddress] = React.useState("")
   const [coordinates, setCoordinates] = React.useState({
     lat:null,
     lng:null
   })
+  const [placeId, setPlaceId] = React.useState("")
 
   const handleSelect = async(value) => {
-    const results = geocodeByAddress(value);
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    setCoordinates(latLng);
     console.log(results)
+  }
+
+  const onChangeHandler = () => {
+    props.setPlace(...props.place, {
+      // type: ,
+      // title: ,
+      // image: ,
+      geo: {
+        lat: coordinates.lat,
+        lng: coordinates.lng,
+      }
+    });
   }
 
 
@@ -40,7 +49,7 @@ export const SearchBar = (props) => {
       <div>
         <p> Latitude:{coordinates.lat} </p>
         <p> Longitude: {coordinates.lng}</p>
-        <input {...getInputProps({ placeholder: "Type your address"})}/>
+        <input {...getInputProps({ placeholder: "Type your destination"})}/>
         <div>
           {loading ? <div> ... Loading </div> : null }
           {suggestions.map((suggestion) => {

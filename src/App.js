@@ -6,10 +6,10 @@ import CreatePlaceOption from './components/CreatePlaceOption'
 
 import {GoogleMapDemo} from "./googleApiDemo/GoogleMapDemo";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
-
+import { SearchBar } from './ui/plan/SearchBar';
 function App() {
   return (
-    <CreatePlaceOption/>
+    <SearchBar/>
   );
 }
 

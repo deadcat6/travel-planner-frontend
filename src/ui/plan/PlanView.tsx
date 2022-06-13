@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {NewPlace} from './NewPlace';
+
 export type userType = {
   id: string,
   plans: planType[],
@@ -58,8 +60,6 @@ export type placeType = {
   //p1
   popularity: number, //counter
 };
-
-import {NewPlace} from './NewPlace';
 
 export const PlanView = () => {
   const [plan, setPlan] = useState<planType>({
