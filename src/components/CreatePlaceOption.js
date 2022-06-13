@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Create = () => {
-    const [title, ]
+    //const [title, ]
 
     return (
         <div className='create'>
