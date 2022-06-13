@@ -43,10 +43,10 @@ export type placeType = {
   placeDuration: {
   startTime: Date,
   endTime: Date,
-  }
+  },
 
   //iris
-  type: typeOfPlace
+  type: typeOfPlace,
   title: string,
   image: string,
   geo: {
@@ -59,15 +59,51 @@ export type placeType = {
   popularity: number, //counter
 };
 
-export const PlanView = () => {
-  const [plan, setPlan] = useState<planType>();
+import {NewPlace} from './NewPlace';
 
-  const [place, setPlace] = useState<placeType>();
+export const PlanView = () => {
+  const [plan, setPlan] = useState<planType>({
+    id: "string",
+    title: "string",
+    owner: [],
+    days: [],
+    planDuration: {
+      startDay: new Date(),
+      endDay: new Date(),
+    },
+    note: "string",
+    //p1
+    desc: "string",
+    tag: [],
+    likes: 1,
+
+  });
+
+  const [place, setPlace] = useState<placeType>({
+      id: "string",
+      note: "string",
+      placeDuration: {
+        startTime: new Date(),
+        endTime: new Date(),
+      },
+      //iris
+      type: 0,
+      title: "string",
+      image: "string",
+      geo: {
+        lat: "string",
+        lng: "string",
+      },
+      rating: 0, // google api
+      popularity: 0, //counter
+    }
+  );
 
   return (
     <div>
-
+      <NewPlace addNewPlace={(place: placeType)=>{console.log(place);}}/>
     </div>
+
 
   )
 }
