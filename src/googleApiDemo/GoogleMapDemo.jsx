@@ -39,7 +39,6 @@ export const GoogleMapDemo = () => {
   const destinationRef = useRef()
 
   if (!isLoaded) {
-
     return <SkeletonText />
   }
 
@@ -100,7 +99,7 @@ export const GoogleMapDemo = () => {
         p={4}
         borderRadius='lg'
         m={4}
-        bgColor='green'
+        bgColor='yellow'
         shadow='base'
         minW='container.md'
         zIndex='1'
