@@ -50,10 +50,10 @@ export type placeType = {
   placeDuration: {
   startTime: Date,
   endTime: Date,
-  },
+  }
 
   //iris
-  type: typeOfPlace,
+  type: typeOfPlace
   title: string,
   image: string,
   geo: {
