@@ -19,7 +19,7 @@ export const SearchBar = (props) => {
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
-    console.log(results)
+    console.log(results[0]);
   }
 
   const onChangeHandler = () => {

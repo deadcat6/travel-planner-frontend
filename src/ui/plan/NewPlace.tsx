@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
-import {placeType} from "./PlanView.tsx";
-import {SearchBar} from "./SearchBar.tsx";
+import {placeType} from "./PlanView";
+import {SearchBar} from "./SearchBar";
 export const NewPlace = (props) => {
   const [place, setPlace] = useState<placeType>({
       id: "string",
