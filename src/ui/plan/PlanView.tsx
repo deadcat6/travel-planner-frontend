@@ -1,6 +1,5 @@
 import * as React from "react";
 import {useState} from "react";
-// @ts-ignore
 import {NewPlace} from './NewPlace';
 
 import Box from '@mui/material/Box';
@@ -48,15 +47,8 @@ export enum typeOfPlace {
 }
 
 export type placeType = {
-  id: string,
-  //songHan
-  note:  string,
-  placeDuration: {
-  startTime: Date,
-  endTime: Date,
-  }
-
   //iris
+  id: string,
   type: string,
   title: string,
   image: string,
@@ -65,7 +57,12 @@ export type placeType = {
     lng: string,
   }
   rating: number, // google api
-
+  //songHan
+  note:  string,
+  placeDuration: {
+    startTime: Date,
+    endTime: Date,
+  }
   //p1
   popularity: number, //counter
 };

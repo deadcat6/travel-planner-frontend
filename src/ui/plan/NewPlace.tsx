@@ -2,7 +2,7 @@ import * as React from "react";
 import {useState} from "react";
 import {placeType} from "./PlanView";
 import {SearchBar} from "./SearchBar";
-export const NewPlace = (props) => {
+export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => {
   const [place, setPlace] = useState<placeType>({
       id: "string",
       note: "string",
