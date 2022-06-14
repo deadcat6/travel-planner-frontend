@@ -11,11 +11,7 @@ import axios from "axios";
 export const SearchBar = (props) => {
   const [address, setAddress] = React.useState("")
   const [img, setImg] = React.useState("")
-  // const [coordinates, setCoordinates] = React.useState({
-  //   lat:null,
-  //   lng:null
-  // })
-  // const [placeId, setPlaceId] = React.useState("")
+
 
   const placeInfo = {
     address : "",
@@ -77,18 +73,20 @@ export const SearchBar = (props) => {
     fetchDetail(placeID);
   }
 
-  // const onChangeHandler = () => {
-  //   props.setPlace(...props.place, {
-  //     id: placeId,
-  //     // title: ,
-  //     // image: ,
-  //     geo: {
-  //       lat: coordinates.lat,
-  //       lng: coordinates.lng,
-  //     }
-  //   });
-  // }
-
+  const onChangeHandler = () => {
+    props.setPlace(...props.place, {
+      id: placeInfo.placeId,
+      title: placeInfo.name,
+      address: placeInfo.address,
+      geo: {
+        lat : placeInfo.coordinates.lat,
+        lng : placeInfo.coordinates.lng
+      },
+      type: placeInfo.type,
+      rating: placeInfo.rating,
+      image: placeInfo.photoReference
+    });
+  }
 
   return (
   //value: user input

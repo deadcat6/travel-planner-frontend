@@ -3,7 +3,6 @@ import {useState} from "react";
 // @ts-ignore
 import {NewPlace} from './NewPlace';
 
-
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
