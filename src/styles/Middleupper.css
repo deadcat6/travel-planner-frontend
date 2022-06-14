@@ -1,9 +1,41 @@
 .middleupper {
     display: flex;
     align-items: center;
-    height: 200px;
+    height: 300px;
     width: 100vw;
     color:darkred;
     background-color: grey;
     position: relative;
+}
+.tripbutton3{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 0px;
+    height:120px;
+    width: 190px;
+    float:right;
+
+}
+
+.tripbutton2{
+    margin-left: 40px;
+    margin-right: 40px;
+    height:120px;
+    width: 190px;
+    float:right;
+
+}
+
+.tripbutton1{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 0px;
+    height:120px;
+    width: 190px;
+    float:right;
+}
+
+.nextbutton{
+    position:absolute;
+    height:10px;
 }
