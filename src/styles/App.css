@@ -1,0 +1,8 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  padding-bottom: 5px;
+}

@@ -1,0 +1,9 @@
+.middlelower {
+    display: flex;
+    align-items: center;
+    height: 200px;
+    width: 100vw;
+    color:darkred;
+    background-color: mediumblue;
+    position: relative;
+}
