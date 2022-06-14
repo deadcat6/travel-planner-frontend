@@ -55,5 +55,6 @@
   "devDependencies": {
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.3"
-  }
+  },
+  "proxy": "https://maps.googleapis.com"
 }

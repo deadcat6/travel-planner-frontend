@@ -53,7 +53,7 @@ export type placeType = {
   }
 
   //iris
-  type: typeOfPlace
+  type: string,
   title: string,
   image: string,
   geo: {
@@ -92,7 +92,7 @@ export const PlanView = () => {
         endTime: new Date(),
       },
       //iris
-      type: 0,
+      type: "string",
       title: "string",
       image: "string",
       geo: {
