@@ -2,21 +2,22 @@ import * as React from "react";
 import {useState} from "react";
 import {placeType} from "./PlanView";
 import {SearchBar} from "./SearchBar";
+import {CreatePlaceOption} from "./CreatePlaceOption";
 export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => {
   const [place, setPlace] = useState<placeType>({
-      id: "string",
-      note: "string",
+      id: "",
+      note: "",
       placeDuration: {
         startTime: new Date(),
         endTime: new Date(),
       },
       //iris
-      type: "string",
-      title: "string",
-      image: "string",
+      type: "",
+      title: "",
+      image: "",
       geo: {
-        lat: "string",
-        lng: "string",
+        lat: "",
+        lng: "",
       },
       rating: 0, // google api
       popularity: 0, //counter
@@ -30,7 +31,7 @@ export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => 
   return (
     <div>
       <SearchBar place={place} setPlace={setPlace}/>
-      {/*  你的其他form组件*/}
+      <CreatePlaceOption />
     </div>
   );
 }

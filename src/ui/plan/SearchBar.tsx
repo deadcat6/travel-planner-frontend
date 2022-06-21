@@ -31,7 +31,8 @@ export const SearchBar = (props) => {
 
   //pass to form
   const onChangeHandler = () => {
-    props.setPlace(...props.place, {
+    props.setPlace({
+      ...props.place, 
       id: placeInfo.placeId,
       title: placeInfo.name,
       address: placeInfo.address,
@@ -43,6 +44,7 @@ export const SearchBar = (props) => {
       rating: placeInfo.rating,
       image: placeInfo.photoReference
     });
+    console.log(props.place)
   }
 
   const fetchDetail  = (placeID) => {
@@ -73,6 +75,7 @@ export const SearchBar = (props) => {
 
       setImg(photoUrl)
       // console.log(placeInfo)
+      onChangeHandler();
     }).catch(error => {
       console.log('err in fetch place photo', error)
     })

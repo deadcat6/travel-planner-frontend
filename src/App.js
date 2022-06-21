@@ -1,7 +1,8 @@
 import React from 'react'
 import logo from './logo.svg';
 import './App.css';
-import './ui/plan/SearchBar.css'
+import './ui/plan/styles/SearchBar.css'
+import './ui/plan/styles/Map.css'
 
 import CreatePlaceOption from './ui/plan/CreatePlaceOption'
 

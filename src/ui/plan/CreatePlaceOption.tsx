@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Title, Box, Image, Button, Group, MultiSelect, InputWrapper, Text,Textarea } from '@mantine/core';
 import {placeType} from "./PlanView";
 
-const Create = () => {
+export const CreatePlaceOption = () => {
     const [id, setId] = useState(0)
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
@@ -79,6 +79,4 @@ const Create = () => {
         </Box>
     )
 }
-
-export default Create
 

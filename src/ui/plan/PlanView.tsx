@@ -1,6 +1,8 @@
 import * as React from "react";
 import {useState} from "react";
 import {NewPlace} from './NewPlace';
+import {PlanMap} from './PlanMap';
+import {SearchBar} from './SearchBar';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -86,25 +88,27 @@ export const PlanView = () => {
   });
 
   const [place, setPlace] = useState<placeType>({
-      id: "string",
-      note: "string",
+      id: "",
+      note: "",
       placeDuration: {
         startTime: new Date(),
         endTime: new Date(),
       },
       //iris
-      type: "string",
-      title: "string",
-      image: "string",
+      type: "",
+      title: "",
+      image: "",
       geo: {
-        lat: "string",
-        lng: "string",
+        lat: "",
+        lng: "",
       },
       rating: 0, // google api
       popularity: 0, //counter
     }
   );
-
+  
+  console.log("pv.tsx ");
+  console.log(place)
   return (
 
     <div>
@@ -117,13 +121,12 @@ export const PlanView = () => {
             <NewPlace addNewPlace={(newPlace: placeType)=>{console.log(place);}}/>
           </Grid>
           <Grid item xs={8}>
-            <div>123</div>
+            <SearchBar place={place} setPlace={setPlace}/>
+            <PlanMap selectedPlace={place}/>
           </Grid>
         </Grid>
       </Box>
 
     </div>
-
-
   )
 }
