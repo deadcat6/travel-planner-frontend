@@ -106,9 +106,7 @@ export const PlanView = () => {
       popularity: 0, //counter
     }
   );
-  
-  console.log("pv.tsx ");
-  console.log(place)
+
   return (
 
     <div>
