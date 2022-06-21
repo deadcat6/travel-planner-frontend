@@ -11,7 +11,7 @@ export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => 
         endTime: new Date(),
       },
       //iris
-      type: 0,
+      type: "string",
       title: "string",
       image: "string",
       geo: {

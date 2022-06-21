@@ -9,7 +9,7 @@ const Create = () => {
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
     const [property, setProperty] = useState(['Hotel', 'Museum', 'Garden', 'Hot Spring'])
-    const [place, setPlace] = useState<placeType>({
+    const [place, setPlace] = useState<placeType> ({
           id: "string",
           note: "string",
           placeDuration: {
@@ -17,7 +17,7 @@ const Create = () => {
               endTime: new Date(),
           },
           //iris
-          type: 0,
+          type: "string",
           title: "string",
           image: "string",
           geo: {

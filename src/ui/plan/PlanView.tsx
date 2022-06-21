@@ -49,7 +49,7 @@ export enum typeOfPlace {
 export type placeType = {
   //iris
   id: string,
-  type: typeOfPlace
+  type: string,
   title: string,
   image: string,
   geo: {
@@ -93,7 +93,7 @@ export const PlanView = () => {
         endTime: new Date(),
       },
       //iris
-      type: 0,
+      type: "string",
       title: "string",
       image: "string",
       geo: {
