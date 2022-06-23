@@ -16,8 +16,8 @@ export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => 
       title: "",
       image: "",
       geo: {
-        lat: "",
-        lng: "",
+        lat: 0,
+        lng: 0,
       },
       rating: 0, // google api
       popularity: 0, //counter
@@ -28,10 +28,12 @@ export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => 
     props.addNewPlace(place);
   }
 
+  console.log(place);
+
   return (
     <div>
       <SearchBar place={place} setPlace={setPlace}/>
-      <CreatePlaceOption />
+      <CreatePlaceOption selectedPlace={place}/>
     </div>
   );
 }

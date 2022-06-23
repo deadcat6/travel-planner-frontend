@@ -55,8 +55,8 @@ export type placeType = {
   title: string,
   image: string,
   geo: {
-    lat: string,
-    lng: string,
+    lat: number,
+    lng: number,
   }
   rating: number, // google api
   //songHan
@@ -99,8 +99,8 @@ export const PlanView = () => {
       title: "",
       image: "",
       geo: {
-        lat: "",
-        lng: "",
+        lat: 0,
+        lng: 0,
       },
       rating: 0, // google api
       popularity: 0, //counter

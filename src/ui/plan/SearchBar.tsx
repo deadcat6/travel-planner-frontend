@@ -14,8 +14,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 export const SearchBar = (props) => {
   const [address, setAddress] = React.useState("")
   const [img, setImg] = React.useState("")
-
-
   const placeInfo = {
     address : "",
     coordinates : {
@@ -59,6 +57,8 @@ export const SearchBar = (props) => {
       if (placeData.photos != null) {
         const photoReference = placeData.photos[0].photo_reference;
         fetchPhoto(photoReference)
+      } else {
+        onChangeHandler();
       }
       console.log(placeInfo)
     }).catch(error => {
@@ -74,7 +74,6 @@ export const SearchBar = (props) => {
       placeInfo.photoReference = photoUrl === null ? "" : photoUrl
 
       setImg(photoUrl)
-      // console.log(placeInfo)
       onChangeHandler();
     }).catch(error => {
       console.log('err in fetch place photo', error)
@@ -106,7 +105,7 @@ export const SearchBar = (props) => {
   //value: user input
   //onChange: change input value
   //onSelect: when one suggestion is selected
-  <PlacesAutocomplete 
+  <PlacesAutocomplete
     value={address} 
     onChange={setAddress} 
     onSelect={handleSelect}>
