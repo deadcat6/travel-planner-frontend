@@ -51,13 +51,24 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
     });
 
     const clickSubmit = () => {
-        setPlace(
+        setPlace({
             ...selectedPlace,
-            placeDuration: ...form.values.timeRange[0]
-        )
-        submitHandler();
+            id: selectedPlace.placeId,
+            placeDuration: {
+                startTime: form.values.timeRange[0],
+                endTime: form.values.timeRange[1],
+            },
+            title: selectedPlace.name,
+            address: selectedPlace.address,
+            geo: {
+              lat : selectedPlace.geo.lat,
+              lng : selectedPlace.geo.lng
+            },
+            type: selectedPlace.type,
+            rating: selectedPlace.rating,
+            image: selectedPlace.photoReference,
+        });
     }
-
 
     return (
         <Box className='create'>
@@ -67,9 +78,10 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
                     form.onSubmit((values) => {
                         console.log(values);
                         console.log(form.values.id);
+                        console.log(form.values.timeRange[0]);
 
-                        console.log(selectedPlace)
 
+                        submitHandler();
                     })
 
                 }
@@ -118,7 +130,7 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
                 />
 
                 <Group position="right" mt="md">
-                    <Button type="submit" onClick={clickSubmit}>Add Place to List</Button>  
+                    <Button type="submit">Add Place to List</Button>  
                 </Group>
             </form>
         </Box>
