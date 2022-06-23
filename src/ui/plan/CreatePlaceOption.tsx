@@ -7,7 +7,7 @@ import { DateRangePicker } from '@mantine/dates';
 import { Title, Box, Checkbox, Image, Button, Group, MultiSelect, Text,Textarea } from '@mantine/core';
 import { placeType } from "./PlanView";
 
-export const CreatePlaceOption = () => {
+export const CreatePlaceOption = ({selectedPlace}) => {
     const [place, setPlace] = useState<placeType>({
             id: "",
             note: "",
@@ -20,8 +20,8 @@ export const CreatePlaceOption = () => {
             title: "",
             image: "",
             geo: {
-                lat: "",
-                lng: "",
+                lat: 0,
+                lng: 0,
             },
             rating: 0, // google api
             popularity: 0, //counter
@@ -56,7 +56,7 @@ export const CreatePlaceOption = () => {
                 />
 
                 <Textarea
-                    placeholder="title"
+                    placeholder={selectedPlace.title}
                     label="Title"
                     required
                     {...form.getInputProps('title')}
@@ -66,7 +66,7 @@ export const CreatePlaceOption = () => {
                     height={240}
                     width={400}
                     radius="sm"
-                    src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+                    src={selectedPlace.image}
                     alt="Random unsplash image"
                     withPlaceholder
                     placeholder={<Text align="center">This image contained the scenery of place</Text>}
@@ -90,6 +90,13 @@ export const CreatePlaceOption = () => {
                     onCreate={(query) => setProperty((current) => [...current, query])}
                     {...form.getInputProps('placeProperty')}
                 />
+
+                {/* const clickSubmit = () => {
+                    setPlace(
+                        .....
+                    )
+                    submitHandler()
+                } */}
 
                 <Group position="right" mt="md">
                     <Button type="submit">Add Place to List</Button>  
