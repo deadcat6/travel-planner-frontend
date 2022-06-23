@@ -33,7 +33,7 @@ export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => 
   return (
     <div>
       <SearchBar place={place} setPlace={setPlace}/>
-      <CreatePlaceOption selectedPlace={place} setPlace={setP} submitHandler={submitHandler}/>
+      <CreatePlaceOption selectedPlace={place} setPlace={setPlace} submitHandler={submitHandler}/>
     </div>
   );
 }

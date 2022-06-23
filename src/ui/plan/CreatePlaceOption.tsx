@@ -36,7 +36,7 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
     //     id: '',
     //     title: '',
     //     image: '',
-    //     dataRange: '',
+    //     timeRange: '',
     //     placeProperty: '',
     //   }
 
@@ -45,7 +45,7 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
           id: '',
           title: '',
           image: '',
-          dataRange: '',
+          timeRange: '',
           placeProperty: '',
         },
     });
@@ -53,7 +53,7 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
     const clickSubmit = () => {
         setPlace(
             ...selectedPlace,
-            id: form.values.id,
+            placeDuration: ...form.values.timeRange[0]
         )
         submitHandler();
     }
@@ -99,10 +99,10 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
                 />
  
                 <DateRangePicker
-                    name="dataRange"
+                    name="timeRange"
                     label="Duration Time"
                     placeholder="Pick dates range"
-                    {...form.getInputProps('dataRange')}
+                    {...form.getInputProps('timeRange')}
                 />
                 
                 <MultiSelect
