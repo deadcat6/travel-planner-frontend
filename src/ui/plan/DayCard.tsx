@@ -39,7 +39,7 @@ export default function DayCard() {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{m: 4, maxWidth: 500, mx: "auto" }}>
       <CardHeader
         avatar={
           // write day info here
