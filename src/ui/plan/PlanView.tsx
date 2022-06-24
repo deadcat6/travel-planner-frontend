@@ -6,6 +6,7 @@ import {SearchBar} from './SearchBar';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import LeftFunctionBar from "./LeftFunctionBar";
 
 export type userType = {
   id: string,
@@ -116,8 +117,9 @@ export const PlanView = () => {
             width: 300,
             color: 'black',
           }}>
-            <NewPlace addNewPlace={(newPlace: placeType)=>{console.log(place);}}/>
+            <LeftFunctionBar />
           </Grid>
+
           <Grid item xs={8}>
             <SearchBar place={place} setPlace={setPlace}/>
             <PlanMap selectedPlace={place}/>

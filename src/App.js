@@ -10,13 +10,14 @@ import {GoogleMapDemo} from "./googleApiDemo/GoogleMapDemo";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import {PlanView} from "./ui/plan/PlanView.tsx";
 import PlanAccordion from './ui/plan/PlanAccordion';
+import RecipeReviewCard from './ui/plan/DayCard';
+import DayCard from './ui/plan/DayCard';
 
 function App() {
   return (
     <div>
       <PlanView/>
       <p> ------------ </p>
-      <PlanAccordion />
     </div>
 
   );
