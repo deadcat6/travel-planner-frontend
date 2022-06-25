@@ -27,6 +27,23 @@ export const CreatePlaceOption = ({selectedPlace}) => {
             popularity: 0, //counter
         }
     );
+
+    //const obj = 
+    // props.setPlace({
+    //     ...props.place, 
+    //     title: form.title
+    //     duration: form.datarange
+    //     id: selectedPlace.id..
+    //     address: placeInfo.address,
+    //     geo: {
+    //       lat : placeInfo.coordinates.lat,
+    //       lng : placeInfo.coordinates.lng
+    //     },
+    //     type: placeInfo.type,
+    //     rating: placeInfo.rating,
+    //     image: placeInfo.photoReference
+    //   });
+
     const [property, setProperty] = useState(['Hotel', 'Museum', 'Garden', 'Hot Spring'])
     const [value, setValue] = useState<[Date | null, Date | null]>([
         new Date(2022, 0, 1),

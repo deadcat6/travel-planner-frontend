@@ -9,7 +9,7 @@ import {
 import {placeType} from "./PlanView";
 import {Button} from '@mantine/core';
 import {TempleBuddhistRounded } from '@mui/icons-material';
-import mapMarker from './icons/map-marker.svg'
+import mapMarker from '../assets/icons/map-marker.svg'
 
 type MapOptions = google.maps.MapOptions;
 type DirectionResult = google.maps.DirectionsResult;

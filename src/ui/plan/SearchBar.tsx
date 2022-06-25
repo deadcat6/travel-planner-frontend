@@ -8,7 +8,6 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
-import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 
 export const SearchBar = (props) => {
