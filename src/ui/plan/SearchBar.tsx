@@ -41,7 +41,7 @@ export const SearchBar = (props) => {
       rating: placeInfo.rating,
       image: placeInfo.photoReference
     });
-    console.log(props.place)
+    // console.log(props.place)
   }
 
   const fetchDetail  = (placeID) => {
@@ -59,14 +59,14 @@ export const SearchBar = (props) => {
       } else {
         onChangeHandler();
       }
-      console.log(placeInfo)
+      // console.log(placeInfo)
     }).catch(error => {
       console.log('err in fetch place detail', error)
     })
   }
 
   const fetchPhoto = (photoReference) => {
-    console.log("fetch photo");
+    // console.log("fetch photo");
     const getPhotoUrl = `${BASE_URL}/photo?maxheight=${PHOTO_HEIGHT}&maxwidth=${PHOTO_WIDTH}&photo_reference=${photoReference}&key=${process.env.REACT_APP_GOOGLE_PLACES_API_KEY}`
     axios.get(getPhotoUrl, {responseType: 'blob'} ).then(response=>{
       const photoUrl = URL.createObjectURL(response.data);

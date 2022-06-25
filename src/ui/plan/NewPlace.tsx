@@ -25,15 +25,15 @@ export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => 
   );
 
   const submitHandler = () => {
-    props.addNewPlace(place);
+    console.log(place);
+    // props.addNewPlace(place);
   }
 
-  console.log(place);
 
   return (
     <div>
       <SearchBar place={place} setPlace={setPlace}/>
-      <CreatePlaceOption selectedPlace={place}/>
+      <CreatePlaceOption selectedPlace={place} setPlace={setPlace} submitHandler={submitHandler}/>
     </div>
   );
 }

@@ -7,43 +7,7 @@ import { DateRangePicker } from '@mantine/dates';
 import { Title, Box, Checkbox, Image, Button, Group, MultiSelect, Text,Textarea } from '@mantine/core';
 import { placeType } from "./PlanView";
 
-export const CreatePlaceOption = ({selectedPlace}) => {
-    const [place, setPlace] = useState<placeType>({
-            id: "",
-            note: "",
-            placeDuration: {
-                startTime: new Date(),
-                endTime: new Date(),
-            },
-            //iris
-            type: "",
-            title: "",
-            image: "",
-            geo: {
-                lat: 0,
-                lng: 0,
-            },
-            rating: 0, // google api
-            popularity: 0, //counter
-        }
-    );
-
-    //const obj = 
-    // props.setPlace({
-    //     ...props.place, 
-    //     title: form.title
-    //     duration: form.datarange
-    //     id: selectedPlace.id..
-    //     address: placeInfo.address,
-    //     geo: {
-    //       lat : placeInfo.coordinates.lat,
-    //       lng : placeInfo.coordinates.lng
-    //     },
-    //     type: placeInfo.type,
-    //     rating: placeInfo.rating,
-    //     image: placeInfo.photoReference
-    //   });
-
+export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
     const [property, setProperty] = useState(['Hotel', 'Museum', 'Garden', 'Hot Spring'])
     const [value, setValue] = useState<[Date | null, Date | null]>([
         new Date(2022, 0, 1),
@@ -55,23 +19,37 @@ export const CreatePlaceOption = ({selectedPlace}) => {
           id: '',
           title: '',
           image: '',
-          dataRange: '',
+          timeRange: '',
           placeProperty: '',
-          save: false,
         },
     });
+
+    const submitPlace = e => {
+        e.preventDefault();
+        setPlace({
+            ...selectedPlace,
+            id: selectedPlace.placeId,
+            placeDuration: {
+                startTime: form.values.timeRange[0],
+                endTime: form.values.timeRange[1],
+            },
+            title: selectedPlace.name,
+            address: selectedPlace.address,
+            geo: {
+              lat : selectedPlace.geo.lat,
+              lng : selectedPlace.geo.lng
+            },
+            type: selectedPlace.type,
+            rating: selectedPlace.rating,
+            image: selectedPlace.photoReference,
+        });
+        submitHandler();
+    }
 
     return (
         <Box className='create'>
             <Title order={2}>Submit a Place Option</Title>
-            <form onSubmit={form.onSubmit((values) => console.log(values))}>
-                <Textarea
-                    placeholder={uuidv4()}
-                    label="Id"
-                    required
-                    {...form.getInputProps('id')}
-                />
-
+            <form onSubmit={submitPlace}>
                 <Textarea
                     placeholder={selectedPlace.title}
                     label="Title"
@@ -90,10 +68,10 @@ export const CreatePlaceOption = ({selectedPlace}) => {
                 />
  
                 <DateRangePicker
-                    name="dataRange"
+                    name="timeRange"
                     label="Duration Time"
                     placeholder="Pick dates range"
-                    {...form.getInputProps('dataRange')}
+                    {...form.getInputProps('timeRange')}
                 />
                 
                 <MultiSelect
@@ -107,13 +85,6 @@ export const CreatePlaceOption = ({selectedPlace}) => {
                     onCreate={(query) => setProperty((current) => [...current, query])}
                     {...form.getInputProps('placeProperty')}
                 />
-
-                {/* const clickSubmit = () => {
-                    setPlace(
-                        .....
-                    )
-                    submitHandler()
-                } */}
 
                 <Group position="right" mt="md">
                     <Button type="submit">Add Place to List</Button>  
