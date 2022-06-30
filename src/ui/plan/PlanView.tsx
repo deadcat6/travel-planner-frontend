@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {NewPlace} from './NewPlace';
 import {PlanMap} from './PlanMap';
 import {SearchBar} from './SearchBar';
@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+
+type DirectionResult = google.maps.DirectionsResult;
 
 export type userType = {
   id: string,
@@ -67,6 +69,7 @@ export type placeType = {
   placeDuration: Date,
   //p1
   popularity: number, //counter
+  properties: string[]
 };
 
 interface TabPanelProps {
@@ -131,13 +134,9 @@ export const PlanView = (props) => {
       },
       rating: 0, // google api
       popularity: 0, //counter
+      properties: []
     }
   );
-
-  // const center = {
-  //   lat: initialCenter.lat,
-  //   lng: initialCenter.lng
-  // }
 
   const [value, setValue] = React.useState(0);
 
@@ -146,17 +145,69 @@ export const PlanView = (props) => {
   };
 
   const [placeMap, setPlaceMap] = useState(new Map<Date, placeType[] | undefined>())
-  const updateMap = (k,v) => {
+  useEffect(() => {
+    const k = place.placeDuration
     if (placeMap.has(k)){
       const placeList = placeMap.get(k);
-      placeList?.push(v)
-      setPlaceMap(placeMap.set(k,placeList))
+      placeList?.push(place)
+      setPlaceMap(placeMap => placeMap.set(k,placeList))
     } else {
       const placeList = new Array<placeType>();
-      placeList?.push(v)
-      setPlaceMap(placeMap.set(k, placeList))
+      placeList?.push(place)
+      setPlaceMap(placeMap => placeMap.set(k, placeList))
     }
     console.log(placeMap)
+  }, [place])
+
+
+  const getDirections = (places) => {
+    fetchDirections(places);
+  }
+
+  const [directions, setDirections] = useState<DirectionResult>();
+
+  const fetchDirections = (places) => {
+    const placesCoord = places.map(place => place.id !== "" ? ({
+      lat: place.geo.lat,
+      lng: place.geo.lng
+    }) : { 
+        lat: 0, 
+        lng: 0
+    })
+    
+    if (placesCoord.length === 1){
+      alert("Please add more destinations to get direction!")
+      return
+    }
+    const wayPoints = new Array();
+    if (placesCoord.length > 2){
+      for (var i = 1; i < placesCoord.length-1; i++){
+        //push rest of points to wayPoints
+        const temp = {
+            location: new google.maps.LatLng(placesCoord[i].lat, placesCoord[i].lng)
+        }
+        wayPoints.push(temp);
+      }
+    }
+    // console.log(placesCoord)
+    // console.log(wayPoints)
+    const src = placesCoord[0];
+    const dest = placesCoord[placesCoord.length-1];
+    const service = new google.maps.DirectionsService();
+    service.route({
+        origin: src,
+        destination: dest,
+        waypoints: wayPoints,
+        travelMode: google.maps.TravelMode.DRIVING,
+    }, (result,status) => {
+        if (status === "OK" && result) {
+          if (directions !== undefined){
+            console.log("clean directions")
+            setDirections(directions => undefined)
+          }
+            setDirections(directions => result)
+        }
+    })
   }
 
   return (
@@ -164,7 +215,7 @@ export const PlanView = (props) => {
       <Header />
       <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-          <Grid item xs={2.5}  sx={{
+          <Grid item xs={4}  sx={{
             width: 300,
             color: 'black',
           }}>
@@ -175,19 +226,24 @@ export const PlanView = (props) => {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <NewPlace addNewPlace = {updateMap} />
+              <NewPlace place={place} setPlace={setPlace} />
             </TabPanel>
 
             <TabPanel value={value} index={1}>
-            {placeMap.map((k,v) => 
-              <DayCard />
-            )}
+            {
+              Array.from(placeMap.entries()).map((entry) => {
+                const[key,value] = entry;
+                if (value && value[0].id !== ''){
+                  return (<DayCard date = {key} placeList = {value} getDirections={getDirections}/>)
+                }
+              })
+            }
             </TabPanel>
   
           </Grid>
           <Grid item xs={8}>
-            <SearchBar place={place} setPlace={setPlace}/>
-            <PlanMap selectedPlace={place} initialCenter = {props.center}/>
+            {/* <SearchBar place={place} setPlace={setPlace}/> */}
+            <PlanMap selectedPlace={place} initialCenter = {props.center} directions={directions}/>
           </Grid>
         </Grid>
       </Box>

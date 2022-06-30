@@ -19,19 +19,36 @@ export const NewPlace = (props) => {
       },
       rating: 0, // google api
       popularity: 0, //counter
+      properties: []
     }
   );
 
-  const submitHandler = () => {
-    // console.log(place);
-    props.addNewPlace(place.placeDuration,place);
+  const updatePlace = (placeInfo) => {
+    // setPlace(place => placeInfo)
+    props.setPlace({
+      ...place,
+      id: placeInfo.id,
+      note: "",
+      placeDuration: placeInfo.placeDuration.getTime(),
+      //iris
+      type: placeInfo.type,
+      title: placeInfo.title,
+      image: placeInfo.image,
+      geo: {
+        lat: placeInfo.geo.lat,
+        lng: placeInfo.geo.lng,
+      },
+      rating: placeInfo.rating, // google api
+      popularity: 0, //counter
+      properties: placeInfo.properties
+    })
+    console.log(placeInfo)
   }
-
 
   return (
     <div>
-      <SearchBar place={place} setPlace={setPlace}/>
-      <CreatePlaceOption selectedPlace={place} setPlace={setPlace} submitHandler={submitHandler}/>
+      <SearchBar updatePlace={updatePlace} />
+      {/* <CreatePlaceOption selectedPlace={place} setPlace={setPlace} submitHandler={submitHandler}/> */}
     </div>
   );
 }

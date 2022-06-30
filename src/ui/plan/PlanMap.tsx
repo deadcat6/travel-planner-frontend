@@ -15,7 +15,7 @@ type MapOptions = google.maps.MapOptions;
 type DirectionResult = google.maps.DirectionsResult;
 // type LatLngLiteral = google.maps.LatLngLiteral;
 
-export const PlanMap = ({selectedPlace, initialCenter}) => {
+export const PlanMap = ({selectedPlace, initialCenter, directions}) => {
     const initial = Object.keys(initialCenter).length !== 0 ? initialCenter: { 
         lat: 48.8584, 
         lng: 2.2945 
@@ -29,8 +29,18 @@ export const PlanMap = ({selectedPlace, initialCenter}) => {
     useEffect(() => {
         setPlaces([...places, selectedPlace])
     }, [selectedPlace])
+    // useEffect(() => {
+    //     setPlaces(placeList)
+    // },[placeList])
 
-    const [directions, setDirections] = useState<DirectionResult>();
+    const [direction, setDirection] = useState<DirectionResult>();
+    useEffect(() => {
+        if (direction !== undefined){
+            setDirection(direction => undefined)
+        }
+        setDirection(direction => directions)
+        console.log(direction)
+    },[directions])
 
     const options = useMemo<MapOptions>(() => ({
         mapId: "4caeda6124b510c6",
@@ -54,37 +64,10 @@ export const PlanMap = ({selectedPlace, initialCenter}) => {
         lng: 0
     })
 
-    const fetchDirections = () => {
-        const wayPoints = new Array();
-        if (placesCoord.length === 2){
-            return;
-        }
-        for (var i = 2; i < placesCoord.length-1; i++){
-            //push rest of points to wayPoints
-            const temp = {
-                location: new google.maps.LatLng(placesCoord[i].lat, placesCoord[i].lng)
-            }
-            wayPoints.push(temp);
-        }
-        // console.log(wayPoints)
-        const src = placesCoord[1];
-        const dest = placesCoord[placesCoord.length-1];
-        const service = new google.maps.DirectionsService();
-            service.route({
-                origin: src,
-                destination: dest,
-                waypoints: wayPoints,
-                travelMode: google.maps.TravelMode.DRIVING,
-            }, (result,status) => {
-                if (status === "OK" && result) {
-                    setDirections(directions => result)
-                }
-            })
-    }
     return (
         <div className = "container">
             <div className = "map">
-                <Button onClick = {fetchDirections}>Get Directions</Button>
+                {/* <Button onClick = {fetchDirections}>Get Directions</Button> */}
                 <GoogleMap
                     zoom={10} 
                     center={center}
@@ -101,7 +84,7 @@ export const PlanMap = ({selectedPlace, initialCenter}) => {
                             scaledSize:  new google.maps.Size(25,30)
                         }}
                     />: null)}
-                {directions && <DirectionsRenderer directions={directions}/>}
+                {direction && <DirectionsRenderer directions={direction}/>}
                 </GoogleMap>
             </div>
         </div>

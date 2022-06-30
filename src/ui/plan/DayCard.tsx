@@ -15,6 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PlanAccordion from './PlanAccordion';
+import DirectionsIcon from '@mui/icons-material/Directions';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -31,31 +32,51 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function DayCard() {
+export default function DayCard(props) {
   const [expanded, setExpanded] = React.useState(false);
+
+  const padTo2Digits = (num) => {
+    return num.toString().padStart(2, '0');
+  }
+
+  const formatDate = (d) => {
+    return [
+      d.getFullYear(),
+      padTo2Digits(d.getMonth() + 1),
+      padTo2Digits(d.getDate()),
+    ].join('-');
+  }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const getDirections = () => {
+    props.getDirections(props.placeList)
+  }
+
+  // console.log(props.placeList)
+
   return (
     <Card sx={{m: 4, maxWidth: 500, mx: "auto" }}>
       <CardHeader
-        avatar={
-          // write day info here
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            Day 1 
-          </Avatar>
-        }
+        // avatar={
+        //   // write day info here
+        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+        //     Day 1 
+        //   </Avatar>
+        // }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <IconButton aria-label="direction" onClick={getDirections}>
+            <DirectionsIcon />
+            <Typography variant="body2" color="text.secondary">
+              Get Directions
+            </Typography>
+        </IconButton>
         }
-        title="Temp title: New York"
-        subheader="September 14, 2016"
+        title = {formatDate(new Date(props.date))}
       />
-      <CardMedia
+      {/* <CardMedia
         component="img"
         height="194"
         image="https://blog-www.pods.com/wp-content/uploads/2019/04/MG_1_1_New_York_City-1.jpg"   //write img addres here
@@ -65,15 +86,15 @@ export default function DayCard() {
         <Typography variant="body2" color="text.secondary">
         "NYC" and "New York, New York" redirect here. For other uses, see New York City (disambiguation); NYC (disambiguation); and New York, New York (disambiguation).
         </Typography>
-      </CardContent>
+      </CardContent> */}
 
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+        </IconButton> */}
+        <Typography variant="body2" color="text.secondary">
+          Plan Details
+        </Typography>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -85,8 +106,11 @@ export default function DayCard() {
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <PlanAccordion />
-        <PlanAccordion />
+        {props.placeList.map(place => 
+          <PlanAccordion place = {place}/>
+        )}
+        {/* <PlanAccordion />
+        <PlanAccordion /> */}
       </Collapse>
     </Card>
   );

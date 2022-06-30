@@ -4,10 +4,9 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { PlanView } from './PlanView';
 
 
-export default function PlanAccordion() {
+export default function PlanAccordion(props) {
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const handleChange =
@@ -24,15 +23,18 @@ export default function PlanAccordion() {
           id="panel1bh-header"
         >
           <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Test Plan 1
+           {props.place.title}
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>Beijing to New York </Typography>
+          {/* <Typography sx={{ color: 'text.secondary' }}>Beijing to New York </Typography> */}
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            test msg
-          </Typography>
-          <PlanView />
+            <img src = {props.place.image}/> 
+            <Typography>
+              Google Rating : {props.place.rating}
+            </Typography>
+            <Typography>
+              Custom Tags: {props.place.properties}
+            </Typography>
         </AccordionDetails>
       </Accordion>
 

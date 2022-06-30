@@ -1,7 +1,7 @@
 .search-bar-container {
     width: 90%;
     max-width: 500px;
-    margin: 40px auto 0;
+    margin: 30px auto 0;
     position: relative;
 }
 
@@ -73,4 +73,13 @@
     top: 30%;
     color: #999;
 }
-  
+
+.create {
+    margin-top: 5%;
+}
+
+img {
+    width: 400px;
+    height: 240px;
+    /* height: 100%; */
+}
