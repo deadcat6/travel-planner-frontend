@@ -5,6 +5,10 @@ import {PlanMap} from './PlanMap';
 import {SearchBar} from './SearchBar';
 import {Footer} from "../Footer"
 import {Header} from "../Header"
+import DayCard from './DayCard';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -27,10 +31,7 @@ export type planType = {
   title: string,
   owner: userType[],
   days: tripDayType[],
-  planDuration: {
-    startDay: Date,
-    endDay: Date,
-  },
+  planDuration: Date,
   note: string,
   //p1
   desc: string,
@@ -63,13 +64,44 @@ export type placeType = {
   rating: number, // google api
   //songHan
   note:  string,
-  placeDuration: {
-    startTime: Date,
-    endTime: Date,
-  }
+  placeDuration: Date,
   //p1
   popularity: number, //counter
 };
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 2 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
 
 export const PlanView = (props) => {
   const [plan, setPlan] = useState<planType>({
@@ -77,10 +109,7 @@ export const PlanView = (props) => {
     title: "string",
     owner: [],
     days: [],
-    planDuration: {
-      startDay: new Date(),
-      endDay: new Date(),
-    },
+    planDuration: new Date(),
     note: "string",
     //p1
     desc: "string",
@@ -91,10 +120,7 @@ export const PlanView = (props) => {
   const [place, setPlace] = useState<placeType>({
       id: "",
       note: "",
-      placeDuration: {
-        startTime: new Date(),
-        endTime: new Date(),
-      },
+      placeDuration: new Date(),
       //iris
       type: "",
       title: "",
@@ -113,16 +139,51 @@ export const PlanView = (props) => {
   //   lng: initialCenter.lng
   // }
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const [placeMap, setPlaceMap] = useState(new Map<Date, placeType[] | undefined>())
+  const updateMap = (k,v) => {
+    if (placeMap.has(k)){
+      const placeList = placeMap.get(k);
+      placeList?.push(v)
+      setPlaceMap(placeMap.set(k,placeList))
+    } else {
+      const placeList = new Array<placeType>();
+      placeList?.push(v)
+      setPlaceMap(placeMap.set(k, placeList))
+    }
+    console.log(placeMap)
+  }
+
   return (
     <div>
       <Header />
       <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={4}  sx={{
+      <Grid container spacing={2}>
+          <Grid item xs={2.5}  sx={{
             width: 300,
             color: 'black',
           }}>
-            <NewPlace addNewPlace={(newPlace: placeType)=>{console.log(place);}}/>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
+              <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tab label="Search Place" {...a11yProps(0)} sx={{mx: "auto"}} />
+                <Tab label="View Plan" {...a11yProps(1)} sx={{mx: "auto"}}/>
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+              <NewPlace addNewPlace = {updateMap} />
+            </TabPanel>
+
+            <TabPanel value={value} index={1}>
+            {placeMap.map((k,v) => 
+              <DayCard />
+            )}
+            </TabPanel>
+  
           </Grid>
           <Grid item xs={8}>
             <SearchBar place={place} setPlace={setPlace}/>

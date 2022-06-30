@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
 import { useForm } from '@mantine/form';
-import { DateRangePicker } from '@mantine/dates';
+import { DatePicker } from '@mantine/dates';
 import { Title, Box, Checkbox, Image, Button, Group, MultiSelect, Text,Textarea } from '@mantine/core';
 import { placeType } from "./PlanView";
 
@@ -29,10 +29,11 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
         setPlace({
             ...selectedPlace,
             id: selectedPlace.placeId,
-            placeDuration: {
-                startTime: form.values.timeRange[0],
-                endTime: form.values.timeRange[1],
-            },
+            placeDuration: form.values.timeRange,
+            // placeDuration: {
+            //     startTime: form.values.timeRange[0],
+            //     endTime: form.values.timeRange[1],
+            // },
             title: selectedPlace.name,
             address: selectedPlace.address,
             geo: {
@@ -66,11 +67,19 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
                     placeholder={<Text align="center">This image contained the scenery of place</Text>}
                 />
  
-                <DateRangePicker
+                {/* <DateRangePicker
                     name="timeRange"
                     label="Duration Time"
                     placeholder="Pick dates range"
                     {...form.getInputProps('timeRange')}
+                /> */}
+
+                <DatePicker 
+                    name="time"
+                    label="Duration Time" 
+                    placeholder="Pick a date" 
+                    {...form.getInputProps('timeRange')}
+                    required 
                 />
                 
                 <MultiSelect

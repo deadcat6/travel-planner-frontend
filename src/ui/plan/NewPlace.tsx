@@ -4,14 +4,11 @@ import {placeType} from "./PlanView";
 import {SearchBar} from "./SearchBar";
 import {CreatePlaceOption} from "./CreatePlaceOption";
 
-export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => {
+export const NewPlace = (props) => {
   const [place, setPlace] = useState<placeType>({
       id: "",
       note: "",
-      placeDuration: {
-        startTime: new Date(),
-        endTime: new Date(),
-      },
+      placeDuration: new Date(),
       //iris
       type: "",
       title: "",
@@ -26,8 +23,8 @@ export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => 
   );
 
   const submitHandler = () => {
-    console.log(place);
-    // props.addNewPlace(place);
+    // console.log(place);
+    props.addNewPlace(place.placeDuration,place);
   }
 
 
