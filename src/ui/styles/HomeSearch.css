@@ -1,6 +1,6 @@
 .home-search-container {
     display: flex;
-    height: 500px;
+    height: 400px;
     width: 100%;
     position: absolute;
     right:3%;
@@ -40,3 +40,12 @@
     padding-right: 25px;
     padding-left: 30px;
 }
+
+.home-autocomplete-container {
+    border-bottom: honeydew;
+    border-left: honeydew;
+    border-right: honeydew;
+    /* border-top: 1px solid #e6e6e6; */
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    border-radius: 0 0 10px 10px;
+  }

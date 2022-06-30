@@ -38,8 +38,8 @@
     "./packages/**"
   ],
   "include": [
-    "src/custom.d.ts",
+    "./src/ui/custom.d.ts",
     "./node_modules/**",
-     "./node_modules/@types/**"
+    "./node_modules/@types/**"
   ]
 }

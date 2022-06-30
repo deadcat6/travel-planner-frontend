@@ -1,12 +1,15 @@
 import React from "react";
 import {HomeSearch} from "./HomeSearch";
+import {Footer} from "../Footer"
+import {Header} from "../Header"
 
-export const Home = () => {
+export const Home = (props) => {
     return (
         <div className = "banner">
-            <HomeSearch  />
-            <div className="bg-image">
-            </div>
+            <Header />
+            <HomeSearch setCenter={props.setCenter} />
+            <div className="bg-image"> </div>
+            <Footer />
         </div>
     )
 }

@@ -7,14 +7,20 @@ import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
+
+
+import {NewPlace} from '../plan/NewPlace'
 
 
 const cityInfo = {
     lat: 0,
     lng: 0
 }
-export const HomeSearch = () => {
-    
+export const HomeSearch = (props) => {
+
+const navigate = useNavigate();
+
 const [address, setAddress] = useState("");
 
 const handleSelect = async(value) => {
@@ -28,6 +34,19 @@ const handleSelect = async(value) => {
 const handleCloseClick = () => {
     setAddress("")
 };
+
+const directPlan = (e) => {
+    e.preventDefault();
+    if (address === ""){
+        alert("Please input your destination city")
+    } else {
+        props.setCenter({
+            lat: cityInfo.lat,
+            lng: cityInfo.lng
+        })
+        navigate("/planView")
+    }
+}
 
 return (
     //value: user input
@@ -52,7 +71,7 @@ return (
                     <SearchIcon className="search-icon"/>
                 </div>
                 
-                <div className="autocomplete-container">
+                <div className="home-autocomplete-container">
                 {suggestions.map((suggestion) => {
                     const className = suggestion.active 
                     ? 'suggestion-item--active'
@@ -73,7 +92,9 @@ return (
                 })}
                 </div>
             </div>
-            <Button variant="contained" className="start-button">Start</Button>
+            <Button variant="contained" className="start-button" onClick={directPlan}>
+                Start
+            </Button>
         </div>
         )}
     </PlacesAutocomplete>

@@ -3,6 +3,7 @@ import {useState} from "react";
 import {placeType} from "./PlanView";
 import {SearchBar} from "./SearchBar";
 import {CreatePlaceOption} from "./CreatePlaceOption";
+
 export const NewPlace = (props: { addNewPlace: (arg0: placeType) => void; }) => {
   const [place, setPlace] = useState<placeType>({
       id: "",

@@ -9,20 +9,22 @@ import {
 import {placeType} from "./PlanView";
 import {Button} from '@mantine/core';
 import {TempleBuddhistRounded } from '@mui/icons-material';
-import mapMarker from '../assets/icons/map-marker.svg'
+import mapMarker from '../assets/icons/map-marker.svg';
 
 type MapOptions = google.maps.MapOptions;
 type DirectionResult = google.maps.DirectionsResult;
-type LatLngLiteral = google.maps.LatLngLiteral;
+// type LatLngLiteral = google.maps.LatLngLiteral;
 
-export const PlanMap = ({selectedPlace}) => {
-    const center = selectedPlace.geo.lat !== 0 ? {
-        lat: selectedPlace.geo.lat,
-        lng: selectedPlace.geo.lng
-    } : { 
+export const PlanMap = ({selectedPlace, initialCenter}) => {
+    const initial = Object.keys(initialCenter).length !== 0 ? initialCenter: { 
         lat: 48.8584, 
         lng: 2.2945 
     };
+    const center = selectedPlace.geo.lat !== 0 ? {
+        lat: selectedPlace.geo.lat,
+        lng: selectedPlace.geo.lng
+    } : initial
+    // console.log(center)
     const [places, setPlaces] = useState<placeType[]>([]);
     useEffect(() => {
         setPlaces([...places, selectedPlace])
@@ -51,12 +53,7 @@ export const PlanMap = ({selectedPlace}) => {
         lat: 0, 
         lng: 0
     })
-    // console.log("coor",placesCoord)
-    // const source = placesCoord[1];
-    // const selectedMarker = new Array()
-    // const addMarker = (position : LatLngLiteral) => {
-    //     selectedMarker.push(position)
-    // }
+
     const fetchDirections = () => {
         const wayPoints = new Array();
         if (placesCoord.length === 2){
@@ -69,7 +66,7 @@ export const PlanMap = ({selectedPlace}) => {
             }
             wayPoints.push(temp);
         }
-        console.log(wayPoints)
+        // console.log(wayPoints)
         const src = placesCoord[1];
         const dest = placesCoord[placesCoord.length-1];
         const service = new google.maps.DirectionsService();
@@ -86,13 +83,9 @@ export const PlanMap = ({selectedPlace}) => {
     }
     return (
         <div className = "container">
-            <div className = "controls">
-                {/* <h1> Map</h1> */}
-
-            </div>
             <div className = "map">
                 <Button onClick = {fetchDirections}>Get Directions</Button>
-                <GoogleMap 
+                <GoogleMap
                     zoom={10} 
                     center={center}
                     mapContainerClassName = "map-container"

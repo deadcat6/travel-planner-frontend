@@ -62,7 +62,6 @@ export const CreatePlaceOption = ({selectedPlace, setPlace, submitHandler}) => {
                     width={400}
                     radius="sm"
                     src={selectedPlace.image}
-                    alt="Random unsplash image"
                     withPlaceholder
                     placeholder={<Text align="center">This image contained the scenery of place</Text>}
                 />

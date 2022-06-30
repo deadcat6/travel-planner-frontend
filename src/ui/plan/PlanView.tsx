@@ -3,6 +3,8 @@ import {useState} from "react";
 import {NewPlace} from './NewPlace';
 import {PlanMap} from './PlanMap';
 import {SearchBar} from './SearchBar';
+import {Footer} from "../Footer"
+import {Header} from "../Header"
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -69,7 +71,7 @@ export type placeType = {
   popularity: number, //counter
 };
 
-export const PlanView = () => {
+export const PlanView = (props) => {
   const [plan, setPlan] = useState<planType>({
     id: "string",
     title: "string",
@@ -84,7 +86,6 @@ export const PlanView = () => {
     desc: "string",
     tag: [],
     likes: 1,
-
   });
 
   const [place, setPlace] = useState<placeType>({
@@ -107,9 +108,14 @@ export const PlanView = () => {
     }
   );
 
-  return (
+  // const center = {
+  //   lat: initialCenter.lat,
+  //   lng: initialCenter.lng
+  // }
 
+  return (
     <div>
+      <Header />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={4}  sx={{
@@ -120,11 +126,11 @@ export const PlanView = () => {
           </Grid>
           <Grid item xs={8}>
             <SearchBar place={place} setPlace={setPlace}/>
-            <PlanMap selectedPlace={place}/>
+            <PlanMap selectedPlace={place} initialCenter = {props.center}/>
           </Grid>
         </Grid>
       </Box>
-
+      <Footer />
     </div>
   )
 }

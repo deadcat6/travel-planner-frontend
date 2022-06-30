@@ -1,0 +1,19 @@
+@import './constants.css';
+.footer {
+    color:rgb(68, 68, 68);
+    /* font-weight:normal; */
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    width: 100%;
+    height: var(--footer-height);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(220, 220, 220) 0px 2px 10px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
