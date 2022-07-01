@@ -68,7 +68,7 @@ export default function DayCard(props) {
         // }
         action={
           <IconButton aria-label="direction" onClick={getDirections}>
-            <DirectionsIcon />
+            <DirectionsIcon color="primary"/>
             <Typography variant="body2" color="text.secondary">
               Get Directions
             </Typography>

@@ -4,6 +4,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TagIcon from '@mui/icons-material/Tag';
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 
 export default function PlanAccordion(props) {
@@ -30,10 +32,12 @@ export default function PlanAccordion(props) {
         <AccordionDetails>
             <img src = {props.place.image}/> 
             <Typography>
-              Google Rating : {props.place.rating}
+              <StarRateIcon color="primary" fontSize="small"/>
+              Google Rating : {props.place.rating === undefined ? "None" : props.place.rating}
             </Typography>
             <Typography>
-              Custom Tags: {props.place.properties}
+              <TagIcon color="primary" fontSize="small"/>
+              Custom Tags: {props.place.properties.map(property => property + " ") }
             </Typography>
         </AccordionDetails>
       </Accordion>
