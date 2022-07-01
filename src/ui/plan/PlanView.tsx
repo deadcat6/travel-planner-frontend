@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { NestCamWiredStandSharp } from "@mui/icons-material";
 
 type DirectionResult = google.maps.DirectionsResult;
 
@@ -144,6 +145,8 @@ export const PlanView = (props) => {
     setValue(newValue);
   };
 
+ 
+  //const [placeMap, setPlaceMap] = useState(new SortedMap())
   const [placeMap, setPlaceMap] = useState(new Map<Date, placeType[] | undefined>())
   useEffect(() => {
     const k = place.placeDuration
@@ -211,7 +214,9 @@ export const PlanView = (props) => {
   }
 
   const planViewDeleteDay=(date)=>{
-    placeMap.delete(date);
+    let newMap=new Map(placeMap)
+    newMap.delete(date)
+    setPlaceMap(newMap);
   }
   
 
@@ -236,14 +241,28 @@ export const PlanView = (props) => {
             </TabPanel>
 
             <TabPanel value={value} index={1}>
-              
             {
-              Array.from(placeMap.entries()).map((entry) => {
+
+                [...placeMap.entries()].sort().map((entry) => {
                 const[key,value] = entry;
                 if (value && value[0].id !== ''){
                   return (<DayCard date = {key} placeList = {value} getDirections={getDirections} DayCardDelete={(date)=>{planViewDeleteDay(date)}}/>)
                 }
               })
+              
+              // Array.from(new Map([...placeMap.entries()].sort()).entries()).map((entry) => {
+              //   const[key,value] = entry;
+              //   if (value && value[0].id !== ''){
+              //     return (<DayCard date = {key} placeList = {value} getDirections={getDirections} DayCardDelete={(date)=>{planViewDeleteDay(date)}}/>)
+              //   }
+              // })
+
+              // Array.from(placeMap.entries()).map((entry) => {
+              //   const[key,value] = entry;
+              //   if (value && value[0].id !== ''){
+              //     return (<DayCard date = {key} placeList = {value} getDirections={getDirections} DayCardDelete={(date)=>{planViewDeleteDay(date)}}/>)
+              //   }
+              // })
             }
             </TabPanel>
   
