@@ -63,61 +63,26 @@ export default function DayCard(props) {
 
   return (
     <Card sx={{m: 4, maxWidth: 500, mx: "auto" }}>
-      <CardHeader
-        // avatar={
-        //   // write day info here
-        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-        //     Day 1 
-        //   </Avatar>
-        // }
 
-        // action={
-        //   <IconButton aria-label="direction" onClick={getDirections}>
-        //     <DirectionsIcon />
-        //     <Typography variant="body2" color="text.secondary">
-        //       Get Directions
-        //     </Typography>
-        //   </IconButton>
-        // }
+      <CardHeader
         title = {formatDate(new Date(props.date))+'    '+props.placeList[0].title + ' ...' } 
       />
-      {/* <Tooltip title="Delete">
-        <IconButton>
-          <DeleteIcon />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Get Directions">
-        <IconButton aria-label="direction" onClick={getDirections}>
-          <DirectionsIcon />
-          <Typography variant="body2" color="text.secondary">
-          </Typography>
-        </IconButton>
-      </Tooltip> */}
+
       <CardMedia
         component="img"
         height="194"
         image={props.placeList[0].image}   //write img addres here
         alt="Paella dish"
       />
-      {/* <CardContent>
-        
-        <Typography variant="body2" color="text.secondary">
-          
-        </Typography>
-      </CardContent> */}
-
+      
       <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton> */}
-        {/* <Typography variant="body2" color="text.secondary">
-          Plan Details
-        </Typography> */}
+        
         <Tooltip title="Like">
           <IconButton aria-label="favorite">
             <FavoriteIcon />
           </IconButton>
         </Tooltip>
+
         <Tooltip title="Get Directions">
           <IconButton aria-label="direction" onClick={getDirections}>
             <DirectionsIcon />
@@ -125,9 +90,11 @@ export default function DayCard(props) {
             </Typography>
           </IconButton>
         </Tooltip>
+
         <Tooltip title="Delete">
           <DeleteButton clickDelete= {() => {props.DayCardDelete(props.date)}}/>
         </Tooltip>
+
         <Tooltip title="Plan Details">
           <ExpandMore
             expand={expanded}
@@ -138,22 +105,13 @@ export default function DayCard(props) {
             <ExpandMoreIcon />
           </ExpandMore>
         </Tooltip>
-        {/* <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore> */}
+        
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         {props.placeList.map(place => 
           <PlanAccordion place = {place}/>
         )}
-        {/* <PlanAccordion />
-        <PlanAccordion /> */}
       </Collapse>
     </Card>
   );
