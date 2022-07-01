@@ -74,17 +74,18 @@ export default function DayCard(props) {
             </Typography>
         </IconButton>
         }
-        title = {formatDate(new Date(props.date))}
+        title = {formatDate(new Date(props.date))+'    '+props.placeList[0].title + ' ...' } 
       />
-      {/* <CardMedia
+      <CardMedia
         component="img"
         height="194"
-        image="https://blog-www.pods.com/wp-content/uploads/2019/04/MG_1_1_New_York_City-1.jpg"   //write img addres here
+        image={props.placeList[0].image}   //write img addres here
         alt="Paella dish"
       />
-      <CardContent>
+      {/* <CardContent>
+        
         <Typography variant="body2" color="text.secondary">
-        "NYC" and "New York, New York" redirect here. For other uses, see New York City (disambiguation); NYC (disambiguation); and New York, New York (disambiguation).
+          
         </Typography>
       </CardContent> */}
 

@@ -156,7 +156,7 @@ export const PlanView = (props) => {
       placeList?.push(place)
       setPlaceMap(placeMap => placeMap.set(k, placeList))
     }
-    console.log(placeMap)
+    // console.log(placeMap)
   }, [place])
 
 
@@ -202,7 +202,7 @@ export const PlanView = (props) => {
     }, (result,status) => {
         if (status === "OK" && result) {
           if (directions !== undefined){
-            console.log("clean directions")
+            // console.log("clean directions")
             setDirections(directions => undefined)
           }
             setDirections(directions => result)
@@ -210,6 +210,9 @@ export const PlanView = (props) => {
     })
   }
 
+  
+
+  
   return (
     <div>
       <Header />
@@ -230,6 +233,7 @@ export const PlanView = (props) => {
             </TabPanel>
 
             <TabPanel value={value} index={1}>
+              
             {
               Array.from(placeMap.entries()).map((entry) => {
                 const[key,value] = entry;
