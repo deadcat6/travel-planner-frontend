@@ -36,6 +36,7 @@ export default function DeleteButton(props) {
 
   const handleDelete = () => {
     setOpen(false);
+    props.clickDelete();
   };
 
   return (

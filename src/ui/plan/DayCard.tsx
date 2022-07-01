@@ -126,7 +126,7 @@ export default function DayCard(props) {
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <DeleteButton />
+          <DeleteButton clickDelete= {() => {props.DayCardDelete(props.date)}}/>
         </Tooltip>
         <Tooltip title="Plan Details">
           <ExpandMore

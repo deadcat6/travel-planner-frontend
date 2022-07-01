@@ -210,6 +210,9 @@ export const PlanView = (props) => {
     })
   }
 
+  const planViewDeleteDay=(date)=>{
+    placeMap.delete(date);
+  }
   
 
   
@@ -238,7 +241,7 @@ export const PlanView = (props) => {
               Array.from(placeMap.entries()).map((entry) => {
                 const[key,value] = entry;
                 if (value && value[0].id !== ''){
-                  return (<DayCard date = {key} placeList = {value} getDirections={getDirections}/>)
+                  return (<DayCard date = {key} placeList = {value} getDirections={getDirections} DayCardDelete={(date)=>{planViewDeleteDay(date)}}/>)
                 }
               })
             }
