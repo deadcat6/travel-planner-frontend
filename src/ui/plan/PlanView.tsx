@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { NestCamWiredStandSharp } from "@mui/icons-material";
 
 type DirectionResult = google.maps.DirectionsResult;
 
@@ -144,6 +145,7 @@ export const PlanView = (props) => {
     setValue(newValue);
   };
 
+  const [mapLength, setmapLength] = useState(0)
   const [placeMap, setPlaceMap] = useState(new Map<Date, placeType[] | undefined>())
   useEffect(() => {
     const k = place.placeDuration
@@ -156,9 +158,22 @@ export const PlanView = (props) => {
       placeList?.push(place)
       setPlaceMap(placeMap => placeMap.set(k, placeList))
     }
-    console.log(placeMap)
+    // getMapLength(placeMap)
+    console.log("map has changed")
   }, [place])
 
+  // const getMapLength = (placeMap) => {
+  //   let counter = 0;
+  //   for (let values of placeMap.values()){
+  //     if (values && values[0].id !== ''){
+  //         values.forEach((place : placeType) => {
+  //           counter += 1;
+  //         })
+  //     }
+  //   }
+  //   setmapLength(mapLength => counter)
+  //   console.log(counter)
+  // }
 
   const getDirections = (places) => {
     fetchDirections(places);
@@ -202,7 +217,7 @@ export const PlanView = (props) => {
     }, (result,status) => {
         if (status === "OK" && result) {
           if (directions !== undefined){
-            console.log("clean directions")
+            // console.log("clean directions")
             setDirections(directions => undefined)
           }
             setDirections(directions => result)
@@ -210,6 +225,13 @@ export const PlanView = (props) => {
     })
   }
 
+  const planViewDeleteDay=(date)=>{
+    let newMap=new Map(placeMap)
+    newMap.delete(date)
+    setPlaceMap(newMap)
+    // getMapLength(placeMap)
+  }
+  
   return (
     <div>
       <Header />
@@ -231,19 +253,34 @@ export const PlanView = (props) => {
 
             <TabPanel value={value} index={1}>
             {
-              Array.from(placeMap.entries()).map((entry) => {
+
+                [...placeMap.entries()].sort().map((entry) => {
                 const[key,value] = entry;
                 if (value && value[0].id !== ''){
-                  return (<DayCard date = {key} placeList = {value} getDirections={getDirections}/>)
+                  return (<DayCard date = {key} placeList = {value} getDirections={getDirections} DayCardDelete={(date)=>{planViewDeleteDay(date)}}/>)
                 }
               })
+              
+              // Array.from(new Map([...placeMap.entries()].sort()).entries()).map((entry) => {
+              //   const[key,value] = entry;
+              //   if (value && value[0].id !== ''){
+              //     return (<DayCard date = {key} placeList = {value} getDirections={getDirections} DayCardDelete={(date)=>{planViewDeleteDay(date)}}/>)
+              //   }
+              // })
+
+              // Array.from(placeMap.entries()).map((entry) => {
+              //   const[key,value] = entry;
+              //   if (value && value[0].id !== ''){
+              //     return (<DayCard date = {key} placeList = {value} getDirections={getDirections} DayCardDelete={(date)=>{planViewDeleteDay(date)}}/>)
+              //   }
+              // })
             }
             </TabPanel>
   
           </Grid>
           <Grid item xs={8}>
             {/* <SearchBar place={place} setPlace={setPlace}/> */}
-            <PlanMap selectedPlace={place} initialCenter = {props.center} directions={directions}/>
+            <PlanMap selectedPlace={place} initialCenter = {props.center} directions={directions} placeMap={placeMap} mapLength = {mapLength}/>
           </Grid>
         </Grid>
       </Box>

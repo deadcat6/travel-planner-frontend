@@ -37,7 +37,7 @@ export default function PlanAccordion(props) {
             </Typography>
             <Typography>
               <TagIcon color="primary" fontSize="small"/>
-              Custom Tags: {props.place.properties.map(property => property + " ") }
+              Custom Tags: {props.place.properties.map(property => property + "   ") }
             </Typography>
         </AccordionDetails>
       </Accordion>

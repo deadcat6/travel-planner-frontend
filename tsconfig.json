@@ -38,7 +38,7 @@
     "./packages/**"
   ],
   "include": [
-    "./src/ui/custom.d.ts",
+    "./src/custom.d.ts",
     "./node_modules/**",
     "./node_modules/@types/**"
   ]
